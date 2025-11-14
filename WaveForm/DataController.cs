@@ -18,7 +18,7 @@ namespace WaveForm
         public Action<int>? DataGenerated;
 
         // チャート更新用デリゲート
-        public Action<List<DataBuffer.DataPoint>>? ChartUpdate;
+        public Action<List<(DateTime time, int value)>>? ChartUpdate;
 
         // バイナリデータを10進数に変換した値
         private int currentvalue;
@@ -58,7 +58,7 @@ namespace WaveForm
             databuf.AddData(DateTime.Now, currentvalue);
 
             // データリストの取得
-            List<DataBuffer.DataPoint> values = databuf.GetValues();
+            List<(DateTime time, int value)> values = databuf.GetValues();
 
             // データ生成完了通知
             DataGenerated?.Invoke(currentvalue);

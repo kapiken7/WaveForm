@@ -24,13 +24,13 @@ namespace WaveForm
                 label2.Text = value.ToString();
             };
 
-            controller.ChartUpdate = (List<DataBuffer.DataPoint> values) =>
+            controller.ChartUpdate = (List<(DateTime time, int value)> values) =>
             {
                 // チャートのクリア
                 dataseries.Points.Clear();
 
                 // グラフにデータ追加
-                foreach (DataBuffer.DataPoint value in values)
+                foreach ((DateTime time, int value) value in values)
                 {
                     dataseries.Points.AddXY(value.time, value.value);
                 }
