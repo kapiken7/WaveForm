@@ -9,7 +9,8 @@ namespace WaveForm
         // 模擬データを格納するためのリスト
         private List<(DateTime time, int value)> valuelist = new List<(DateTime time, int value)>();
 
-        private const int MAX_DATA_COUNT = 30;
+        // 最大データ件数
+        private const int MAX_DATA_COUNT = 20;
 
         // リストへの追加
         public void AddData(DateTime time,int value)

@@ -12,7 +12,7 @@ namespace WaveForm
         // DataBufferクラス
         private readonly DataBuffer databuf;
         // Timerクラス
-        private readonly System.Windows.Forms.Timer timer;
+        private readonly System.Windows.Forms.Timer timer = null!;
 
         // データ生成完了通知用デリゲート
         public Action<int>? DataGenerated;
@@ -49,7 +49,7 @@ namespace WaveForm
             timer.Stop();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs? e)
         {
             // バイナリデータ取得
             currentvalue = generator.Generate();

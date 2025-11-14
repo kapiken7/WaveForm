@@ -7,8 +7,7 @@ namespace WaveForm
     public partial class MainForm : Form
     {
         private readonly DataController controller;
-        private Series dataseries;
-        private ChartArea area;
+        private Series dataseries = null!;
 
         public MainForm()
         {
@@ -24,6 +23,7 @@ namespace WaveForm
                 label2.Text = value.ToString();
             };
 
+            // チャート更新用デリゲート登録
             controller.ChartUpdate = (List<(DateTime time, int value)> values) =>
             {
                 // チャートのクリア
@@ -51,8 +51,10 @@ namespace WaveForm
             // 線の太さを5に設定
             dataseries.BorderWidth = 5;
 
+            // ChartAreaの取得
+            ChartArea area = chart1.ChartAreas[0];
+
             // X軸のラベル書式を設定
-            area = chart1.ChartAreas[0];
             area.AxisX.LabelStyle.Format = "HH:mm:ss";
 
             // X軸の間隔を1秒に設定
