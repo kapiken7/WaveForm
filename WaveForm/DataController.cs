@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WaveForm
 {
@@ -8,11 +9,16 @@ namespace WaveForm
     {
         // DataGeneratorクラス
         private readonly DataGenerator generator;
+        // DataBufferクラス
+        private readonly DataBuffer databuf;
         // Timerクラス
         private readonly System.Windows.Forms.Timer timer;
 
         // データ生成完了通知用デリゲート
         public Action<int>? DataGenerated;
+
+        // チャート更新用デリゲート
+        public Action<List<DataBuffer.DataPoint>>? ChartUpdate;
 
         // バイナリデータを10進数に変換した値
         private int currentvalue;
@@ -21,6 +27,7 @@ namespace WaveForm
         public DataController()
         {
             generator = new DataGenerator();
+            databuf = new DataBuffer();
             timer = new System.Windows.Forms.Timer();
 
             currentvalue = 0;
@@ -47,8 +54,17 @@ namespace WaveForm
             // バイナリデータ取得
             currentvalue = generator.Generate();
 
+            // データの格納
+            databuf.AddData(DateTime.Now, currentvalue);
+
+            // データリストの取得
+            List<DataBuffer.DataPoint> values = databuf.GetValues();
+
             // データ生成完了通知
             DataGenerated?.Invoke(currentvalue);
+
+            // チャート更新
+            ChartUpdate?.Invoke(values);
         }
     }
 }

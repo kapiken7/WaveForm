@@ -22,16 +22,18 @@ namespace WaveForm
             controller.DataGenerated = (int value) =>
             {
                 label2.Text = value.ToString();
-                dataseries.Points.AddXY(DateTime.Now ,value);
+            };
 
-                // データ点が20点を超えたら先頭の点を削除
-                if (dataseries.Points.Count > 20)
+            controller.ChartUpdate = (List<DataBuffer.DataPoint> values) =>
+            {
+                // チャートのクリア
+                dataseries.Points.Clear();
+
+                // グラフにデータ追加
+                foreach (DataBuffer.DataPoint value in values)
                 {
-                    dataseries.Points.RemoveAt(0);
+                    dataseries.Points.AddXY(value.time, value.value);
                 }
-
-                // X軸、Y軸の再計算
-                area.RecalculateAxesScale();
             };
         }
 
