@@ -1,15 +1,20 @@
 using System;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WaveForm
 {
     public partial class MainForm : Form
     {
         private readonly DataController controller;
+        private Series dataseries;
+        private ChartArea area;
 
         public MainForm()
         {
             InitializeComponent();
+
+            InitializeChart();
 
             controller = new DataController();
 
@@ -17,7 +22,40 @@ namespace WaveForm
             controller.DataGenerated = (int value) =>
             {
                 label2.Text = value.ToString();
+                dataseries.Points.AddXY(DateTime.Now ,value);
+
+                // データ点が20点を超えたら先頭の点を削除
+                if (dataseries.Points.Count > 20)
+                {
+                    dataseries.Points.RemoveAt(0);
+                }
+
+                // X軸、Y軸の再計算
+                area.RecalculateAxesScale();
             };
+        }
+
+        // Chartの初期化
+        private void InitializeChart()
+        {
+            // グラフのクリア
+            chart1.Series.Clear();
+            // グラフの追加
+            dataseries = chart1.Series.Add("Value");
+            // グラフの種類を折れ線グラフに指定
+            dataseries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            // グラフのX軸の型をDateTimeに設定
+            dataseries.XValueType = ChartValueType.DateTime;
+            // 線の太さを5に設定
+            dataseries.BorderWidth = 5;
+
+            // X軸のラベル書式を設定
+            area = chart1.ChartAreas[0];
+            area.AxisX.LabelStyle.Format = "HH:mm:ss";
+
+            // X軸の間隔を1秒に設定
+            area.AxisX.IntervalType = DateTimeIntervalType.Seconds;
+            area.AxisX.Interval = 1;
         }
 
         // Startボタン押下
