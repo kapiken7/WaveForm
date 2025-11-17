@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Linq;
+using System.Diagnostics;
 
 namespace WaveForm
 {
@@ -24,7 +25,13 @@ namespace WaveForm
         public Action<List<(DateTime time, int value)>>? ChartUpdate;
 
         // 解析完了通知用デリゲート
-        public Action<double,int,int>? DataAnalyzed; 
+        public Action<double, int, int>? DataAnalyzed;
+
+        // 閾値設定用デリゲート
+        public Action? UpdateThreshold;
+
+        // アラート通知用デリゲート
+        public Action? DataAlerted;
 
         // バイナリデータを10進数に変換した値
         private int currentvalue;
@@ -64,11 +71,15 @@ namespace WaveForm
             // データの格納
             buffer.AddData(DateTime.Now, currentvalue);
 
+            // 閾値更新通知
+            UpdateThreshold?.Invoke();
+
             // データリストの取得
             List<(DateTime time, int value)> values = buffer.GetValues();
 
             // 解析用リスト
             List<int> analyzes = values.Select(v => v.value).ToList();
+
             // 解析実施
             analyzer.Analyze(analyzes);
 
@@ -79,7 +90,20 @@ namespace WaveForm
             ChartUpdate?.Invoke(values);
 
             // データ解析完了通知
-            DataAnalyzed?.Invoke(analyzer.Average,analyzer.Max,analyzer.Min);
+            DataAnalyzed?.Invoke(analyzer.Average, analyzer.Max, analyzer.Min);
+
+            // 異常判定
+            if (analyzer.IsAlert)
+            {
+                // アラート通知
+                DataAlerted?.Invoke();
+            }
+        }
+
+        // 閾値設定メソッド
+        public void SetThreshold(int threshold)
+        {
+            analyzer.Threshold = threshold;
         }
     }
 }

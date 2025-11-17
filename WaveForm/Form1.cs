@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -42,6 +43,24 @@ namespace WaveForm
                 label4.Text = avarage.ToString();
                 label6.Text = max.ToString();
                 label8.Text = min.ToString();
+            };
+
+            // 閾値設定用デリゲート登録
+            controller.UpdateThreshold = () =>
+            {
+                // UIから閾値取得
+                int threshold = (int)numericUpDown1.Value;
+
+                // 閾値設定
+                controller.SetThreshold(threshold);
+            };
+
+            // アラート通知用デリゲート登録
+            controller.DataAlerted = () =>
+            {
+                // UIにアラート表示
+                label11.Text = "異常";
+                label11.BackColor = System.Drawing.Color.Red;
             };
 
         }

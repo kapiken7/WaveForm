@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             StartButton = new Button();
             StopButton = new Button();
             label1 = new Label();
@@ -44,16 +44,22 @@
             label8 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
+            numericUpDown1 = new NumericUpDown();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // StartButton
             // 
-            StartButton.Location = new Point(39, 39);
+            StartButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            StartButton.Location = new Point(39, 21);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(129, 41);
+            StartButton.Size = new Size(141, 40);
             StartButton.TabIndex = 0;
             StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = true;
@@ -61,9 +67,10 @@
             // 
             // StopButton
             // 
-            StopButton.Location = new Point(188, 39);
+            StopButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            StopButton.Location = new Point(197, 21);
             StopButton.Name = "StopButton";
-            StopButton.Size = new Size(129, 41);
+            StopButton.Size = new Size(141, 40);
             StopButton.TabIndex = 1;
             StopButton.Text = "Stop";
             StopButton.UseVisualStyleBackColor = true;
@@ -91,18 +98,18 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
-            chart1.Location = new Point(39, 95);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chart1.Legends.Add(legend2);
+            chart1.Location = new Point(39, 100);
             chart1.Name = "chart1";
-            series1.BorderWidth = 5;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
+            series2.BorderWidth = 5;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chart1.Series.Add(series2);
             chart1.Size = new Size(724, 346);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
@@ -193,18 +200,62 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(341, 1);
+            groupBox1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            groupBox1.Location = new Point(410, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(353, 91);
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
             groupBox1.Text = "モニタ値（統計値は直近20件）";
             // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(111, 67);
+            numericUpDown1.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(99, 27);
+            numericUpDown1.TabIndex = 13;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label9.Location = new Point(39, 67);
+            label9.Name = "label9";
+            label9.Size = new Size(66, 23);
+            label9.TabIndex = 14;
+            label9.Text = "しきい値";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label10.Location = new Point(221, 67);
+            label10.Name = "label10";
+            label10.Size = new Size(117, 23);
+            label10.TabIndex = 15;
+            label10.Text = "しきい値判定：";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.FromArgb(192, 255, 192);
+            label11.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label11.Location = new Point(344, 67);
+            label11.Name = "label11";
+            label11.Size = new Size(44, 23);
+            label11.TabIndex = 16;
+            label11.Text = "正常";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(numericUpDown1);
             Controls.Add(chart1);
             Controls.Add(StopButton);
             Controls.Add(StartButton);
@@ -215,7 +266,9 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -233,5 +286,9 @@
         private Label label8;
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox1;
+        private NumericUpDown numericUpDown1;
+        private Label label9;
+        private Label label10;
+        private Label label11;
     }
 }
