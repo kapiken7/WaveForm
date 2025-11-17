@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             StartButton = new Button();
             StopButton = new Button();
             label1 = new Label();
@@ -98,19 +98,19 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chart1.Legends.Add(legend2);
-            chart1.Location = new Point(39, 100);
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(39, 120);
             chart1.Name = "chart1";
-            series2.BorderWidth = 5;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chart1.Series.Add(series2);
-            chart1.Size = new Size(724, 346);
+            series1.BorderWidth = 5;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(724, 326);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
             // 
@@ -201,7 +201,7 @@
             // 
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            groupBox1.Location = new Point(410, 3);
+            groupBox1.Location = new Point(410, 18);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(353, 91);
             groupBox1.TabIndex = 12;
@@ -210,7 +210,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(111, 67);
+            numericUpDown1.Location = new Point(111, 82);
             numericUpDown1.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(99, 27);
@@ -220,7 +220,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label9.Location = new Point(39, 67);
+            label9.Location = new Point(39, 82);
             label9.Name = "label9";
             label9.Size = new Size(66, 23);
             label9.TabIndex = 14;
@@ -230,7 +230,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label10.Location = new Point(221, 67);
+            label10.Location = new Point(221, 82);
             label10.Name = "label10";
             label10.Size = new Size(117, 23);
             label10.TabIndex = 15;
@@ -241,7 +241,7 @@
             label11.AutoSize = true;
             label11.BackColor = Color.FromArgb(192, 255, 192);
             label11.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label11.Location = new Point(344, 67);
+            label11.Location = new Point(344, 82);
             label11.Name = "label11";
             label11.Size = new Size(44, 23);
             label11.TabIndex = 16;
