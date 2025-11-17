@@ -35,6 +35,15 @@ namespace WaveForm
                     dataseries.Points.AddXY(value.time, value.value);
                 }
             };
+
+            // データ解析完了通知用デリゲート登録
+            controller.DataAnalyzed = (double avarage, int max, int min) =>
+            {
+                label4.Text = avarage.ToString();
+                label6.Text = max.ToString();
+                label8.Text = min.ToString();
+            };
+
         }
 
         // Chartの初期化

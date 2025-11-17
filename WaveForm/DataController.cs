@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Linq;
 
 namespace WaveForm
 {
@@ -10,7 +11,9 @@ namespace WaveForm
         // DataGeneratorクラス
         private readonly DataGenerator generator;
         // DataBufferクラス
-        private readonly DataBuffer databuf;
+        private readonly DataBuffer buffer;
+        // DataAnalyzerクラス
+        private readonly DataAnalyzer analyzer;
         // Timerクラス
         private readonly System.Windows.Forms.Timer timer = null!;
 
@@ -20,6 +23,9 @@ namespace WaveForm
         // チャート更新用デリゲート
         public Action<List<(DateTime time, int value)>>? ChartUpdate;
 
+        // 解析完了通知用デリゲート
+        public Action<double,int,int>? DataAnalyzed; 
+
         // バイナリデータを10進数に変換した値
         private int currentvalue;
 
@@ -27,7 +33,8 @@ namespace WaveForm
         public DataController()
         {
             generator = new DataGenerator();
-            databuf = new DataBuffer();
+            buffer = new DataBuffer();
+            analyzer = new DataAnalyzer();
             timer = new System.Windows.Forms.Timer();
 
             currentvalue = 0;
@@ -55,16 +62,24 @@ namespace WaveForm
             currentvalue = generator.Generate();
 
             // データの格納
-            databuf.AddData(DateTime.Now, currentvalue);
+            buffer.AddData(DateTime.Now, currentvalue);
 
             // データリストの取得
-            List<(DateTime time, int value)> values = databuf.GetValues();
+            List<(DateTime time, int value)> values = buffer.GetValues();
+
+            // 解析用リスト
+            List<int> analyzes = values.Select(v => v.value).ToList();
+            // 解析実施
+            analyzer.Analyze(analyzes);
 
             // データ生成完了通知
             DataGenerated?.Invoke(currentvalue);
 
             // チャート更新
             ChartUpdate?.Invoke(values);
+
+            // データ解析完了通知
+            DataAnalyzed?.Invoke(analyzer.Average,analyzer.Max,analyzer.Min);
         }
     }
 }
