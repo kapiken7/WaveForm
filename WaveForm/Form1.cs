@@ -45,16 +45,6 @@ namespace WaveForm
                 label8.Text = min.ToString();
             };
 
-            // 閾値設定用デリゲート登録
-            controller.UpdateThreshold = () =>
-            {
-                // UIから閾値取得
-                int threshold = (int)numericUpDown1.Value;
-
-                // 閾値設定
-                controller.SetThreshold(threshold);
-            };
-
             // アラート通知用デリゲート登録
             controller.DataAlerted = () =>
             {
@@ -100,6 +90,23 @@ namespace WaveForm
         private void StopButton_Click(object sender, EventArgs e)
         {
             controller.Stop();
+        }
+
+        // NumericUpDownの値変更
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            // UIから閾値取得
+            int threshold = (int)numericUpDown1.Value;
+
+            // 閾値設定
+            controller.SetThreshold(threshold);
+        }
+
+        // CheckResetボタン押下
+        private void CheckResetButton_Click(object sender, EventArgs e)
+        {
+            label11.Text = "正常";
+            label11.BackColor = System.Drawing.Color.GreenYellow;
         }
     }
 }

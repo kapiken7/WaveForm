@@ -48,6 +48,7 @@
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
+            CheckResetButton = new Button();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -59,7 +60,7 @@
             StartButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
             StartButton.Location = new Point(39, 21);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(141, 40);
+            StartButton.Size = new Size(116, 40);
             StartButton.TabIndex = 0;
             StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = true;
@@ -68,9 +69,9 @@
             // StopButton
             // 
             StopButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            StopButton.Location = new Point(197, 21);
+            StopButton.Location = new Point(172, 23);
             StopButton.Name = "StopButton";
-            StopButton.Size = new Size(141, 40);
+            StopButton.Size = new Size(116, 36);
             StopButton.TabIndex = 1;
             StopButton.Text = "Stop";
             StopButton.UseVisualStyleBackColor = true;
@@ -215,6 +216,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(99, 27);
             numericUpDown1.TabIndex = 13;
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label9
             // 
@@ -239,7 +241,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.BackColor = Color.FromArgb(192, 255, 192);
+            label11.BackColor = Color.GreenYellow;
             label11.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
             label11.Location = new Point(344, 82);
             label11.Name = "label11";
@@ -247,11 +249,22 @@
             label11.TabIndex = 16;
             label11.Text = "正常";
             // 
+            // CheckResetButton
+            // 
+            CheckResetButton.Location = new Point(294, 30);
+            CheckResetButton.Name = "CheckResetButton";
+            CheckResetButton.Size = new Size(94, 29);
+            CheckResetButton.TabIndex = 17;
+            CheckResetButton.Text = "判定リセット";
+            CheckResetButton.UseVisualStyleBackColor = true;
+            CheckResetButton.Click += CheckResetButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(CheckResetButton);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -290,5 +303,6 @@
         private Label label9;
         private Label label10;
         private Label label11;
+        private Button CheckResetButton;
     }
 }

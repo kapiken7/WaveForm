@@ -27,9 +27,6 @@ namespace WaveForm
         // 解析完了通知用デリゲート
         public Action<double, int, int>? DataAnalyzed;
 
-        // 閾値設定用デリゲート
-        public Action? UpdateThreshold;
-
         // アラート通知用デリゲート
         public Action? DataAlerted;
 
@@ -70,9 +67,6 @@ namespace WaveForm
 
             // データの格納
             buffer.AddData(DateTime.Now, currentvalue);
-
-            // 閾値更新通知
-            UpdateThreshold?.Invoke();
 
             // データリストの取得
             List<(DateTime time, int value)> values = buffer.GetValues();
