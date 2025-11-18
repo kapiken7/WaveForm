@@ -15,6 +15,8 @@ namespace WaveForm
         private readonly DataBuffer buffer;
         // DataAnalyzerクラス
         private readonly DataAnalyzer analyzer;
+        // CsvLoggerクラス
+        private readonly CsvLogger logger;
         // Timerクラス
         private readonly System.Windows.Forms.Timer timer = null!;
 
@@ -39,6 +41,7 @@ namespace WaveForm
             generator = new DataGenerator();
             buffer = new DataBuffer();
             analyzer = new DataAnalyzer();
+            logger = new CsvLogger();
             timer = new System.Windows.Forms.Timer();
 
             currentvalue = 0;
@@ -91,6 +94,9 @@ namespace WaveForm
             {
                 // アラート通知
                 DataAlerted?.Invoke();
+
+                // アラートログ書き込み
+                logger.WriteAlertLog(DateTime.Now, currentvalue);
             }
         }
 
