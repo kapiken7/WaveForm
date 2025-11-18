@@ -55,9 +55,9 @@ namespace WaveForm
 
         public void Analyze(List<int> values)
         {
-            // リストがnullもしくは空でなければ処理
             if (values?.Count > 0)
             {
+                // リストがnullもしくは空でなければ処理
                 // メンバ変数更新
                 average =　values.Average(v => v);
                 max = values.Max(v => v);

@@ -9,6 +9,15 @@ namespace WaveForm
 {
     internal class DataController
     {
+        // データ生成完了通知用デリゲート
+        public Action<int>? DataGenerated;
+        // チャート更新用デリゲート
+        public Action<List<(DateTime time, int value)>>? ChartUpdate;
+        // 解析完了通知用デリゲート
+        public Action<double, int, int>? DataAnalyzed;
+        // アラート通知用デリゲート
+        public Action? DataAlerted;
+
         // DataGeneratorクラス
         private readonly DataGenerator generator;
         // DataBufferクラス
@@ -19,21 +28,10 @@ namespace WaveForm
         private readonly CsvLogger logger;
         // Timerクラス
         private readonly System.Windows.Forms.Timer timer = null!;
-
-        // データ生成完了通知用デリゲート
-        public Action<int>? DataGenerated;
-
-        // チャート更新用デリゲート
-        public Action<List<(DateTime time, int value)>>? ChartUpdate;
-
-        // 解析完了通知用デリゲート
-        public Action<double, int, int>? DataAnalyzed;
-
-        // アラート通知用デリゲート
-        public Action? DataAlerted;
-
         // バイナリデータを10進数に変換した値
         private int currentvalue;
+        // 前回のアラート状態
+        private bool previousalert = false;
 
         // MainForm を受け取るコンストラクタ
         public DataController()
@@ -47,12 +45,26 @@ namespace WaveForm
             currentvalue = 0;
         }
 
+        // インターバル設定メソッド
+        public void SetInterval(int interval)
+        {
+            timer.Interval = interval;
+        }
+
+        // 閾値設定メソッド
+        public void SetThreshold(int threshold)
+        {
+            analyzer.Threshold = threshold;
+        }
+
         // スタートメソッド
         public void Start()
         {
-            // タイマー設定＆開始
-            timer.Interval = 1000;
+            // イベントハンドラの再登録防止
+            timer.Tick -= Timer_Tick;
+            // イベントハンドラ登録
             timer.Tick += Timer_Tick;
+            // タイマー開始
             timer.Start();
         }
 
@@ -65,11 +77,14 @@ namespace WaveForm
 
         private void Timer_Tick(object? sender, EventArgs? e)
         {
+            // 現在日時取得
+            DateTime now = DateTime.Now;
+
             // バイナリデータ取得
             currentvalue = generator.Generate();
 
             // データの格納
-            buffer.AddData(DateTime.Now, currentvalue);
+            buffer.AddData(now, currentvalue);
 
             // データリストの取得
             List<(DateTime time, int value)> values = buffer.GetValues();
@@ -89,21 +104,27 @@ namespace WaveForm
             // データ解析完了通知
             DataAnalyzed?.Invoke(analyzer.Average, analyzer.Max, analyzer.Min);
 
-            // 異常判定
-            if (analyzer.IsAlert)
+            if (analyzer.IsAlert && !previousalert)
             {
+                // 正常→異常の遷移を検出
                 // アラート通知
                 DataAlerted?.Invoke();
 
                 // アラートログ書き込み
-                logger.WriteAlertLog(DateTime.Now, currentvalue);
+                logger.WriteAlertLog(now,"異常値を検知" ,currentvalue);
             }
-        }
+            else if (!analyzer.IsAlert && previousalert)
+            {
+                // 異常→正常の遷移を検出
+                // アラートログ書き込み
+                logger.WriteAlertLog(now, "異常値から復帰", currentvalue);
+            }
+                
+            // 前回のアラート状態を保存
+            previousalert = analyzer.IsAlert;
 
-        // 閾値設定メソッド
-        public void SetThreshold(int threshold)
-        {
-            analyzer.Threshold = threshold;
+            // データログ書き込み
+            logger.WriteLog(now, currentvalue, analyzer.Average, analyzer.Max, analyzer.Min, analyzer.IsAlert);
         }
     }
 }

@@ -20,12 +20,17 @@ namespace WaveForm
 
             // 閾値設定の読み込み
             numericUpDown1.Value = Properties.Settings.Default.Threshold;
+            controller.SetThreshold((int)numericUpDown1.Value);
+
+            // インターバル設定の読み込み
+            numericUpDown2.Value = Properties.Settings.Default.TimeInterval;
+            controller.SetInterval((int)numericUpDown2.Value);
 
             // データ生成完了通知用デリゲート登録
             controller.DataGenerated = (int value) =>
-            {
-                label2.Text = value.ToString();
-            };
+                {
+                    label2.Text = value.ToString();
+                };
 
             // チャート更新用デリゲート登録
             controller.ChartUpdate = (List<(DateTime time, int value)> values) =>
@@ -95,18 +100,23 @@ namespace WaveForm
             controller.Stop();
         }
 
-        // NumericUpDownの値変更
+        // 閾値変更時
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             // UIから閾値取得
             int threshold = (int)numericUpDown1.Value;
 
-            // 設定の保存
-            Properties.Settings.Default.Threshold = threshold;
-            Properties.Settings.Default.Save();
-
             // 閾値設定
             controller.SetThreshold(threshold);
+        }
+
+        // インターバル変更時
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            // UIからインターバル取得
+            int interval = (int)numericUpDown2.Value;
+            // インターバル設定
+            controller.SetInterval(interval);
         }
 
         // CheckResetボタン押下
@@ -114,6 +124,17 @@ namespace WaveForm
         {
             label11.Text = "正常";
             label11.BackColor = System.Drawing.Color.GreenYellow;
+        }
+
+        // フォームクローズ時
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // インターバル設定の保存
+            Properties.Settings.Default.TimeInterval = (int)numericUpDown2.Value;
+            // 閾値設定の保存
+            Properties.Settings.Default.Threshold = (int)numericUpDown1.Value;
+            // 設定の保存
+            Properties.Settings.Default.Save();
         }
     }
 }
