@@ -18,6 +18,9 @@ namespace WaveForm
 
             controller = new DataController();
 
+            // 閾値設定の読み込み
+            numericUpDown1.Value = Properties.Settings.Default.Threshold;
+
             // データ生成完了通知用デリゲート登録
             controller.DataGenerated = (int value) =>
             {
@@ -97,6 +100,10 @@ namespace WaveForm
         {
             // UIから閾値取得
             int threshold = (int)numericUpDown1.Value;
+
+            // 設定の保存
+            Properties.Settings.Default.Threshold = threshold;
+            Properties.Settings.Default.Save();
 
             // 閾値設定
             controller.SetThreshold(threshold);
