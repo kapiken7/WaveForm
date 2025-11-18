@@ -103,6 +103,7 @@
             label2.Size = new Size(19, 33);
             label2.TabIndex = 3;
             label2.Text = "0";
+            label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // chart1
             // 
@@ -141,6 +142,7 @@
             label4.Size = new Size(32, 33);
             label4.TabIndex = 6;
             label4.Text = "0.0";
+            label4.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label5
             // 
@@ -161,6 +163,7 @@
             label6.Size = new Size(19, 33);
             label6.TabIndex = 8;
             label6.Text = "0";
+            label6.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label7
             // 
@@ -181,6 +184,7 @@
             label8.Size = new Size(19, 33);
             label8.TabIndex = 10;
             label8.Text = "0";
+            label8.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel1
             // 
@@ -223,6 +227,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(99, 30);
             numericUpDown1.TabIndex = 13;
+            numericUpDown1.TextAlign = HorizontalAlignment.Right;
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label9
@@ -284,11 +289,12 @@
             // numericUpDown2
             // 
             numericUpDown2.Location = new Point(6, 104);
-            numericUpDown2.Maximum = new decimal(new int[] { 50000, 0, 0, 0 });
+            numericUpDown2.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             numericUpDown2.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(99, 30);
             numericUpDown2.TabIndex = 16;
+            numericUpDown2.TextAlign = HorizontalAlignment.Right;
             numericUpDown2.Value = new decimal(new int[] { 100, 0, 0, 0 });
             numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
