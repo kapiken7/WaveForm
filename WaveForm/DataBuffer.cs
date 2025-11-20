@@ -7,26 +7,31 @@ namespace WaveForm
     internal class DataBuffer
     {
         // 模擬データを格納するためのリスト
-        private List<(DateTime time, int value)> valuelist = new List<(DateTime time, int value)>();
+        private List<(DateTime time, int value)> valueList;
 
         // 最大データ件数
         private const int MAX_DATA_COUNT = 20;
 
+        internal DataBuffer()
+        {
+            valueList = new List<(DateTime time, int value)>();
+        }
+
         // リストへの追加
         public void AddData(DateTime time,int value)
         {
-            valuelist.Add((time,value));
+            valueList.Add((time,value));
 
             // 最大件数を超えた場合、古いデータを削除
-            if (valuelist.Count > MAX_DATA_COUNT)
+            if (valueList.Count > MAX_DATA_COUNT)
             {
-                valuelist.RemoveAt(0);
+                valueList.RemoveAt(0);
             }
         }
 
         public List<(DateTime time, int value)> GetValues()
         {
-            return valuelist; 
+            return valueList; 
         }
     }
 }

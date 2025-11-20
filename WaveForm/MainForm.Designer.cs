@@ -28,61 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            StartButton = new Button();
-            StopButton = new Button();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            buttonStart = new Button();
+            buttonStop = new Button();
             label1 = new Label();
-            label2 = new Label();
+            labelCurrentValue = new Label();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label3 = new Label();
-            label4 = new Label();
+            labelAverage = new Label();
             label5 = new Label();
-            label6 = new Label();
+            labelMax = new Label();
             label7 = new Label();
-            label8 = new Label();
+            labelMin = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
-            numericUpDown1 = new NumericUpDown();
+            numericThreshold = new NumericUpDown();
             label9 = new Label();
             label10 = new Label();
-            label11 = new Label();
-            CheckResetButton = new Button();
+            labelAlertStatus = new Label();
+            buttonCheckReset = new Button();
             groupBox2 = new GroupBox();
-            numericUpDown2 = new NumericUpDown();
+            numericInterval = new NumericUpDown();
             label12 = new Label();
             groupBox3 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericThreshold).BeginInit();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericInterval).BeginInit();
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
-            // StartButton
+            // buttonStart
             // 
-            StartButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            StartButton.Location = new Point(39, 22);
-            StartButton.Name = "StartButton";
-            StartButton.Size = new Size(116, 46);
-            StartButton.TabIndex = 0;
-            StartButton.Text = "Start";
-            StartButton.UseVisualStyleBackColor = true;
-            StartButton.Click += StartButton_Click;
+            buttonStart.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            buttonStart.Location = new Point(39, 22);
+            buttonStart.Name = "buttonStart";
+            buttonStart.Size = new Size(116, 46);
+            buttonStart.TabIndex = 0;
+            buttonStart.Text = "Start";
+            buttonStart.UseVisualStyleBackColor = true;
+            buttonStart.Click += StartButton_Click;
             // 
-            // StopButton
+            // buttonStop
             // 
-            StopButton.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            StopButton.Location = new Point(161, 22);
-            StopButton.Name = "StopButton";
-            StopButton.Size = new Size(116, 46);
-            StopButton.TabIndex = 0;
-            StopButton.Text = "Stop";
-            StopButton.UseVisualStyleBackColor = true;
-            StopButton.Click += StopButton_Click;
+            buttonStop.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            buttonStop.Location = new Point(161, 22);
+            buttonStop.Name = "buttonStop";
+            buttonStop.Size = new Size(116, 46);
+            buttonStop.TabIndex = 0;
+            buttonStop.Text = "Stop";
+            buttonStop.UseVisualStyleBackColor = true;
+            buttonStop.Click += StopButton_Click;
             // 
             // label1
             // 
@@ -94,31 +94,31 @@
             label1.TabIndex = 2;
             label1.Text = "現在値";
             // 
-            // label2
+            // labelCurrentValue
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(78, 0);
-            label2.Name = "label2";
-            label2.Padding = new Padding(0, 5, 0, 5);
-            label2.Size = new Size(19, 33);
-            label2.TabIndex = 3;
-            label2.Text = "0";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            labelCurrentValue.AutoSize = true;
+            labelCurrentValue.Location = new Point(78, 0);
+            labelCurrentValue.Name = "labelCurrentValue";
+            labelCurrentValue.Padding = new Padding(0, 5, 0, 5);
+            labelCurrentValue.Size = new Size(19, 33);
+            labelCurrentValue.TabIndex = 3;
+            labelCurrentValue.Text = "0";
+            labelCurrentValue.TextAlign = ContentAlignment.MiddleRight;
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chart1.Legends.Add(legend2);
             chart1.Location = new Point(39, 168);
             chart1.Name = "chart1";
-            series1.BorderWidth = 5;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
+            series2.BorderWidth = 5;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chart1.Series.Add(series2);
             chart1.Size = new Size(724, 278);
             chart1.TabIndex = 4;
             chart1.Text = "chart1";
@@ -133,16 +133,16 @@
             label3.TabIndex = 5;
             label3.Text = "平均値";
             // 
-            // label4
+            // labelAverage
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(78, 33);
-            label4.Name = "label4";
-            label4.Padding = new Padding(0, 5, 0, 5);
-            label4.Size = new Size(32, 33);
-            label4.TabIndex = 6;
-            label4.Text = "0.0";
-            label4.TextAlign = ContentAlignment.MiddleRight;
+            labelAverage.AutoSize = true;
+            labelAverage.Location = new Point(78, 33);
+            labelAverage.Name = "labelAverage";
+            labelAverage.Padding = new Padding(0, 5, 0, 5);
+            labelAverage.Size = new Size(32, 33);
+            labelAverage.TabIndex = 6;
+            labelAverage.Text = "0.0";
+            labelAverage.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label5
             // 
@@ -154,16 +154,16 @@
             label5.TabIndex = 7;
             label5.Text = "最大値";
             // 
-            // label6
+            // labelMax
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(228, 0);
-            label6.Name = "label6";
-            label6.Padding = new Padding(0, 5, 0, 5);
-            label6.Size = new Size(19, 33);
-            label6.TabIndex = 8;
-            label6.Text = "0";
-            label6.TextAlign = ContentAlignment.MiddleRight;
+            labelMax.AutoSize = true;
+            labelMax.Location = new Point(228, 0);
+            labelMax.Name = "labelMax";
+            labelMax.Padding = new Padding(0, 5, 0, 5);
+            labelMax.Size = new Size(19, 33);
+            labelMax.TabIndex = 8;
+            labelMax.Text = "0";
+            labelMax.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label7
             // 
@@ -175,16 +175,16 @@
             label7.TabIndex = 9;
             label7.Text = "最小値";
             // 
-            // label8
+            // labelMin
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(228, 33);
-            label8.Name = "label8";
-            label8.Padding = new Padding(0, 5, 0, 5);
-            label8.Size = new Size(19, 33);
-            label8.TabIndex = 10;
-            label8.Text = "0";
-            label8.TextAlign = ContentAlignment.MiddleRight;
+            labelMin.AutoSize = true;
+            labelMin.Location = new Point(228, 33);
+            labelMin.Name = "labelMin";
+            labelMin.Padding = new Padding(0, 5, 0, 5);
+            labelMin.Size = new Size(19, 33);
+            labelMin.TabIndex = 10;
+            labelMin.Text = "0";
+            labelMin.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel1
             // 
@@ -194,12 +194,12 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.Controls.Add(label1, 0, 0);
-            tableLayoutPanel1.Controls.Add(label2, 1, 0);
-            tableLayoutPanel1.Controls.Add(label4, 1, 1);
+            tableLayoutPanel1.Controls.Add(labelCurrentValue, 1, 0);
+            tableLayoutPanel1.Controls.Add(labelAverage, 1, 1);
             tableLayoutPanel1.Controls.Add(label5, 2, 0);
-            tableLayoutPanel1.Controls.Add(label6, 3, 0);
+            tableLayoutPanel1.Controls.Add(labelMax, 3, 0);
             tableLayoutPanel1.Controls.Add(label7, 2, 1);
-            tableLayoutPanel1.Controls.Add(label8, 3, 1);
+            tableLayoutPanel1.Controls.Add(labelMin, 3, 1);
             tableLayoutPanel1.Controls.Add(label3, 0, 1);
             tableLayoutPanel1.Location = new Point(16, 48);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -220,15 +220,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "モニタ値（統計値は直近20件）";
             // 
-            // numericUpDown1
+            // numericThreshold
             // 
-            numericUpDown1.Location = new Point(6, 49);
-            numericUpDown1.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(99, 30);
-            numericUpDown1.TabIndex = 13;
-            numericUpDown1.TextAlign = HorizontalAlignment.Right;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            numericThreshold.Location = new Point(6, 49);
+            numericThreshold.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+            numericThreshold.Name = "numericThreshold";
+            numericThreshold.Size = new Size(99, 30);
+            numericThreshold.TabIndex = 13;
+            numericThreshold.TextAlign = HorizontalAlignment.Right;
+            numericThreshold.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label9
             // 
@@ -250,33 +250,33 @@
             label10.TabIndex = 15;
             label10.Text = "状態：";
             // 
-            // label11
+            // labelAlertStatus
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.GreenYellow;
-            label11.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label11.Location = new Point(73, 36);
-            label11.Name = "label11";
-            label11.Size = new Size(44, 23);
-            label11.TabIndex = 16;
-            label11.Text = "正常";
+            labelAlertStatus.AutoSize = true;
+            labelAlertStatus.BackColor = Color.GreenYellow;
+            labelAlertStatus.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            labelAlertStatus.Location = new Point(73, 36);
+            labelAlertStatus.Name = "labelAlertStatus";
+            labelAlertStatus.Size = new Size(44, 23);
+            labelAlertStatus.TabIndex = 16;
+            labelAlertStatus.Text = "正常";
             // 
-            // CheckResetButton
+            // buttonCheckReset
             // 
-            CheckResetButton.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            CheckResetButton.Location = new Point(130, 30);
-            CheckResetButton.Name = "CheckResetButton";
-            CheckResetButton.Size = new Size(94, 29);
-            CheckResetButton.TabIndex = 17;
-            CheckResetButton.Text = "判定リセット";
-            CheckResetButton.UseVisualStyleBackColor = true;
-            CheckResetButton.Click += CheckResetButton_Click;
+            buttonCheckReset.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            buttonCheckReset.Location = new Point(130, 30);
+            buttonCheckReset.Name = "buttonCheckReset";
+            buttonCheckReset.Size = new Size(94, 29);
+            buttonCheckReset.TabIndex = 17;
+            buttonCheckReset.Text = "判定リセット";
+            buttonCheckReset.UseVisualStyleBackColor = true;
+            buttonCheckReset.Click += CheckResetButton_Click;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(numericUpDown2);
+            groupBox2.Controls.Add(numericInterval);
             groupBox2.Controls.Add(label12);
-            groupBox2.Controls.Add(numericUpDown1);
+            groupBox2.Controls.Add(numericThreshold);
             groupBox2.Controls.Add(label9);
             groupBox2.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
             groupBox2.Location = new Point(286, 22);
@@ -286,17 +286,17 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "設定";
             // 
-            // numericUpDown2
+            // numericInterval
             // 
-            numericUpDown2.Location = new Point(6, 104);
-            numericUpDown2.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(99, 30);
-            numericUpDown2.TabIndex = 16;
-            numericUpDown2.TextAlign = HorizontalAlignment.Right;
-            numericUpDown2.Value = new decimal(new int[] { 100, 0, 0, 0 });
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
+            numericInterval.Location = new Point(6, 104);
+            numericInterval.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            numericInterval.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
+            numericInterval.Name = "numericInterval";
+            numericInterval.Size = new Size(99, 30);
+            numericInterval.TabIndex = 16;
+            numericInterval.TextAlign = HorizontalAlignment.Right;
+            numericInterval.Value = new decimal(new int[] { 100, 0, 0, 0 });
+            numericInterval.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // label12
             // 
@@ -311,8 +311,8 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(label10);
-            groupBox3.Controls.Add(CheckResetButton);
-            groupBox3.Controls.Add(label11);
+            groupBox3.Controls.Add(buttonCheckReset);
+            groupBox3.Controls.Add(labelAlertStatus);
             groupBox3.Font = new Font("Yu Gothic UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 128);
             groupBox3.Location = new Point(39, 84);
             groupBox3.Name = "groupBox3";
@@ -329,8 +329,8 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(chart1);
-            Controls.Add(StopButton);
-            Controls.Add(StartButton);
+            Controls.Add(buttonStop);
+            Controls.Add(buttonStart);
             Controls.Add(groupBox1);
             Name = "MainForm";
             Text = "MainForm";
@@ -339,10 +339,10 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericThreshold).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericInterval).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ResumeLayout(false);
@@ -350,27 +350,27 @@
 
         #endregion
 
-        private Button StartButton;
-        private Button StopButton;
+        private Button buttonStart;
+        private Button buttonStop;
         private Label label1;
-        private Label label2;
+        private Label labelCurrentValue;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private Label label3;
-        private Label label4;
+        private Label labelAverage;
         private Label label5;
-        private Label label6;
+        private Label labelMax;
         private Label label7;
-        private Label label8;
+        private Label labelMin;
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericThreshold;
         private Label label9;
         private Label label10;
-        private Label label11;
-        private Button CheckResetButton;
+        private Label labelAlertStatus;
+        private Button buttonCheckReset;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericInterval;
         private Label label12;
     }
 }

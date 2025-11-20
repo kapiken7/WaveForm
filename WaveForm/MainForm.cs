@@ -8,7 +8,7 @@ namespace WaveForm
     public partial class MainForm : Form
     {
         private readonly DataController controller;
-        private Series dataseries = null!;
+        private Series dataSeries = null!;
 
         public MainForm()
         {
@@ -19,46 +19,46 @@ namespace WaveForm
             controller = new DataController();
 
             // 閾値設定の読み込み
-            numericUpDown1.Value = Properties.Settings.Default.Threshold;
-            controller.SetThreshold((int)numericUpDown1.Value);
+            numericThreshold.Value = Properties.Settings.Default.Threshold;
+            controller.SetThreshold((int)numericThreshold.Value);
 
             // インターバル設定の読み込み
-            numericUpDown2.Value = Properties.Settings.Default.TimeInterval;
-            controller.SetInterval((int)numericUpDown2.Value);
+            numericInterval.Value = Properties.Settings.Default.TimeInterval;
+            controller.SetInterval((int)numericInterval.Value);
 
             // データ生成完了通知用デリゲート登録
             controller.DataGenerated = (int value) =>
                 {
-                    label2.Text = value.ToString();
+                    labelCurrentValue.Text = value.ToString();
                 };
 
             // チャート更新用デリゲート登録
             controller.ChartUpdate = (List<(DateTime time, int value)> values) =>
             {
                 // チャートのクリア
-                dataseries.Points.Clear();
+                dataSeries.Points.Clear();
 
                 // グラフにデータ追加
                 foreach ((DateTime time, int value) value in values)
                 {
-                    dataseries.Points.AddXY(value.time, value.value);
+                    dataSeries.Points.AddXY(value.time, value.value);
                 }
             };
 
             // データ解析完了通知用デリゲート登録
             controller.DataAnalyzed = (double avarage, int max, int min) =>
             {
-                label4.Text = avarage.ToString();
-                label6.Text = max.ToString();
-                label8.Text = min.ToString();
+                labelAverage.Text = avarage.ToString();
+                labelMax.Text = max.ToString();
+                labelMin.Text = min.ToString();
             };
 
             // アラート通知用デリゲート登録
             controller.DataAlerted = () =>
             {
                 // UIにアラート表示
-                label11.Text = "異常";
-                label11.BackColor = System.Drawing.Color.Red;
+                labelAlertStatus.Text = "異常";
+                labelAlertStatus.BackColor = System.Drawing.Color.Red;
             };
 
         }
@@ -69,13 +69,13 @@ namespace WaveForm
             // グラフのクリア
             chart1.Series.Clear();
             // グラフの追加
-            dataseries = chart1.Series.Add("Value");
+            dataSeries = chart1.Series.Add("Value");
             // グラフの種類を折れ線グラフに指定
-            dataseries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            dataSeries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             // グラフのX軸の型をDateTimeに設定
-            dataseries.XValueType = ChartValueType.DateTime;
+            dataSeries.XValueType = ChartValueType.DateTime;
             // 線の太さを5に設定
-            dataseries.BorderWidth = 5;
+            dataSeries.BorderWidth = 5;
 
             // ChartAreaの取得
             ChartArea area = chart1.ChartAreas[0];
@@ -103,36 +103,31 @@ namespace WaveForm
         // 閾値変更時
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            // UIから閾値取得
-            int threshold = (int)numericUpDown1.Value;
-
             // 閾値設定
-            controller.SetThreshold(threshold);
+            controller.SetThreshold((int)numericThreshold.Value);
         }
 
         // インターバル変更時
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            // UIからインターバル取得
-            int interval = (int)numericUpDown2.Value;
             // インターバル設定
-            controller.SetInterval(interval);
+            controller.SetInterval((int)numericInterval.Value);
         }
 
         // CheckResetボタン押下
         private void CheckResetButton_Click(object sender, EventArgs e)
         {
-            label11.Text = "正常";
-            label11.BackColor = System.Drawing.Color.GreenYellow;
+            labelAlertStatus.Text = "正常";
+            labelAlertStatus.BackColor = System.Drawing.Color.GreenYellow;
         }
 
         // フォームクローズ時
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // インターバル設定の保存
-            Properties.Settings.Default.TimeInterval = (int)numericUpDown2.Value;
+            Properties.Settings.Default.TimeInterval = (int)numericInterval.Value;
             // 閾値設定の保存
-            Properties.Settings.Default.Threshold = (int)numericUpDown1.Value;
+            Properties.Settings.Default.Threshold = (int)numericThreshold.Value;
             // 設定の保存
             Properties.Settings.Default.Save();
         }

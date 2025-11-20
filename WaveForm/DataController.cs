@@ -29,9 +29,9 @@ namespace WaveForm
         // Timerクラス
         private readonly System.Windows.Forms.Timer timer = null!;
         // バイナリデータを10進数に変換した値
-        private int currentvalue;
+        private int currentValue;
         // 前回のアラート状態
-        private bool previousalert = false;
+        private bool previousAlert = false;
 
         // MainForm を受け取るコンストラクタ
         public DataController()
@@ -42,7 +42,7 @@ namespace WaveForm
             logger = new CsvLogger();
             timer = new System.Windows.Forms.Timer();
 
-            currentvalue = 0;
+            currentValue = 0;
         }
 
         // インターバル設定メソッド
@@ -81,50 +81,50 @@ namespace WaveForm
             DateTime now = DateTime.Now;
 
             // バイナリデータ取得
-            currentvalue = generator.Generate();
+            currentValue = generator.Generate();
 
             // データの格納
-            buffer.AddData(now, currentvalue);
+            buffer.AddData(now, currentValue);
 
             // データリストの取得
-            List<(DateTime time, int value)> values = buffer.GetValues();
+            List<(DateTime time, int value)> pointValues = buffer.GetValues();
 
             // 解析用リスト
-            List<int> analyzes = values.Select(v => v.value).ToList();
+            List<int> analysisValues = pointValues.Select(v => v.value).ToList();
 
             // 解析実施
-            analyzer.Analyze(analyzes);
+            analyzer.Analyze(analysisValues);
 
             // データ生成完了通知
-            DataGenerated?.Invoke(currentvalue);
+            DataGenerated?.Invoke(currentValue);
 
             // チャート更新
-            ChartUpdate?.Invoke(values);
+            ChartUpdate?.Invoke(pointValues);
 
             // データ解析完了通知
             DataAnalyzed?.Invoke(analyzer.Average, analyzer.Max, analyzer.Min);
 
-            if (analyzer.IsAlert && !previousalert)
+            if (analyzer.IsAlert && !previousAlert)
             {
                 // 正常→異常の遷移を検出
                 // アラート通知
                 DataAlerted?.Invoke();
 
                 // アラートログ書き込み
-                logger.WriteAlertLog(now,"異常値を検知" ,currentvalue);
+                logger.WriteAlertLog(now,"異常値を検知" ,currentValue);
             }
-            else if (!analyzer.IsAlert && previousalert)
+            else if (!analyzer.IsAlert && previousAlert)
             {
                 // 異常→正常の遷移を検出
                 // アラートログ書き込み
-                logger.WriteAlertLog(now, "異常値から復帰", currentvalue);
+                logger.WriteAlertLog(now, "異常値から復帰", currentValue);
             }
                 
             // 前回のアラート状態を保存
-            previousalert = analyzer.IsAlert;
+            previousAlert = analyzer.IsAlert;
 
             // データログ書き込み
-            logger.WriteLog(now, currentvalue, analyzer.Average, analyzer.Max, analyzer.Min, analyzer.IsAlert);
+            logger.WriteLog(now, currentValue, analyzer.Average, analyzer.Max, analyzer.Min, analyzer.IsAlert);
         }
     }
 }

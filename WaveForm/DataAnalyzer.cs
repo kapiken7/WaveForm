@@ -16,7 +16,7 @@ namespace WaveForm
         // 閾値
         private int threshold;
         // アラートフラグ
-        private bool isalert;
+        private bool isAlert;
 
         internal DataAnalyzer() 
         {
@@ -24,7 +24,7 @@ namespace WaveForm
             max = 0;
             min = 0;
             threshold = 0;
-            isalert = false;
+            isAlert = false;
         }
 
         // メンバ変数のプロパティ
@@ -50,7 +50,7 @@ namespace WaveForm
         // アラートフラグの読み取り
         public bool IsAlert
         {
-            get { return isalert; }
+            get { return isAlert; }
         }
 
         public void Analyze(List<int> values)
@@ -67,7 +67,7 @@ namespace WaveForm
                 average = Math.Round(average, 1);
 
                 // 閾値チェック
-                isalert = (values.Last() > threshold);
+                isAlert = (values.Last() > threshold);
             }
         }
     }

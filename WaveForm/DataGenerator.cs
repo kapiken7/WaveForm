@@ -13,15 +13,15 @@ namespace WaveForm
         public int Generate()
         {
             // 2バイト分の配列作成
-            byte[] binarydata = new byte[2];
+            byte[] binaryData = new byte[2];
 
             // バイナリデータの乱数作成
-            random.NextBytes(binarydata);
+            random.NextBytes(binaryData);
 
             // 10進数に変換
-            int outputdata = BitConverter.ToUInt16(binarydata, 0);
+            int outputData = BitConverter.ToUInt16(binaryData, 0);
 
-            return outputdata;
+            return outputData;
         }
     }
 }
