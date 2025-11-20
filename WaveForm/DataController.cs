@@ -17,6 +17,8 @@ namespace WaveForm
         public Action<double, int, int>? DataAnalyzed;
         // アラート通知用デリゲート
         public Action? DataAlerted;
+        // ログ書き込みエラー通知用デリゲート
+        public Action<string>? LoggerErrorOccurred;
 
         // DataGeneratorクラス
         private readonly DataGenerator generator;
@@ -43,6 +45,12 @@ namespace WaveForm
             timer = new System.Windows.Forms.Timer();
 
             currentValue = 0;
+
+            // ログ書き込みエラー通知用デリゲート登録
+            logger.LogErrorOccurred = (string message) =>
+            {
+                LoggerErrorOccurred?.Invoke(message);
+            };
         }
 
         // インターバル設定メソッド
@@ -51,7 +59,7 @@ namespace WaveForm
             timer.Interval = interval;
         }
 
-        // 閾値設定メソッド
+        // しきい値設定メソッド
         public void SetThreshold(int threshold)
         {
             analyzer.Threshold = threshold;
@@ -75,13 +83,14 @@ namespace WaveForm
             timer.Stop();
         }
 
+        // タイマーイベントハンドラ
         private void Timer_Tick(object? sender, EventArgs? e)
         {
             // 現在日時取得
             DateTime now = DateTime.Now;
 
             // バイナリデータ取得
-            currentValue = generator.Generate();
+            currentValue = generator.GenerateValue();
 
             // データの格納
             buffer.AddData(now, currentValue);
